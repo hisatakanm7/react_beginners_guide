@@ -11,43 +11,17 @@
     <script src="./build/react.js"></script>
     <script src="./build/react-dom.js"></script>
     <script>
-
-
-
-
       var Component = React.createClass({
         render: function() {
-          return React.DOM.span(null, "カスタムコンポーネント");
+          return React.DOM.span(null, "私は" + this.props.name + "です。");
         }
       });
-      var ComponentFactory = React.createFactory(Component);
-
       ReactDOM.render(
-        // React.createElement(Component),
-        // ComponentFactory(),
-        React.createElement("span", null, "Hello"),
+        React.createElement(Component, {
+          name: "ボブ",
+        }),
         document.getElementById("app")
       );
-
-
-
-      //
-      //
-      // ReactDOM.render(
-      //   React.DOM.h1(
-      //     {
-      //       style: {
-      //         background: "black",
-      //         color: "white",
-      //         fontFamily: "Verdana",
-      //       },
-      //       className: "pretty",
-      //       htmlFor: "me",
-      //     },
-      //     "Hello world!"
-      //   ),
-      //   document.getElementById("app")
-      // );
     </script>
   </body>
 </html>
