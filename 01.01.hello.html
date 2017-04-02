@@ -11,30 +11,73 @@
     <script src="./build/react.js"></script>
     <script src="./build/react-dom.js"></script>
     <script>
-      var Component = React.createClass({
-        propTypes: {
-          firstName: React.PropTypes.string.isRequired,
-          middleName: React.PropTypes.string,
-          familyName: React.PropTypes.string.isRequired,
-          address: React.PropTypes.string,
-        },
-        getDefaultProps: function() {
+      var TextAreaCounter = React.createClass({
+        getInitialState: function() {
           return {
-            middleName: '',
-            address: 'なし',
+            text: this.props.text,
           };
         },
+        propTypes: {
+          text: React.PropTypes.string,
+        },
+
+        getDefaultProps: function() {
+          return {
+            text: '',
+          };
+        },
+
+        _textChange: function(ev) {
+          this.setState({
+            text: ev.target.value,
+          });
+        },
+
         render: function() {
-          return React.DOM.span(null, "私は" + this.props.firstName + this.props.familyName + "です。");
+          return React.DOM.div(null,
+            React.DOM.textarea({
+              value: this.state.text,
+              onChange: this._textChange,
+            }),
+            React.DOM.h3(null, this.state.text.length)
+          );
         }
-      });
+      })
       ReactDOM.render(
-        React.createElement(Component, {
-          firstName: "nm7",
-          familyName: "hisataka"
+        React.createElement(TextAreaCounter, {
+          text: "ボブ",
         }),
         document.getElementById("app")
       );
+      //
+      //
+      //
+      //
+      //
+      // var Component = React.createClass({
+      //   propTypes: {
+      //     firstName: React.PropTypes.string.isRequired,
+      //     middleName: React.PropTypes.string,
+      //     familyName: React.PropTypes.string.isRequired,
+      //     address: React.PropTypes.string,
+      //   },
+      //   getDefaultProps: function() {
+      //     return {
+      //       middleName: '',
+      //       address: 'なし',
+      //     };
+      //   },
+      //   render: function() {
+      //     return React.DOM.span(null, "私は" + this.props.firstName + this.props.familyName + "です。");
+      //   }
+      // });
+      // ReactDOM.render(
+      //   React.createElement(Component, {
+      //     firstName: "nm7",
+      //     familyName: "hisataka"
+      //   }),
+      //   document.getElementById("app")
+      // );
     </script>
   </body>
 </html>
