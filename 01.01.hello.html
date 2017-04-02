@@ -12,6 +12,30 @@
     <script src="./build/react-dom.js"></script>
     <script>
       var TextAreaCounter = React.createClass({
+        _log: function(methodName, args) {
+          console.log(methodName,args);
+        },
+        componentWillUpdate: function() {
+          this._log('componentWillUpdate', arguments);
+        },
+        componentDidupdate: function(oldProps, oldState) {
+          if (this.state.text.length > 3){
+            this.replaceState(oldState);
+          }
+          this._log('componentDidupdate', arguments);
+        },
+        componentWillMount: function() {
+          this._log('componentWillMount', arguments);
+        },
+        componentDidMount: function() {
+          this._log('componentDidMount', arguments);
+        },
+        componentWillUnmount: function() {
+          this._log('componentWillUnmount', arguments);
+        },
+
+
+
         getInitialState: function() {
           return {
             text: this.props.text,
@@ -49,35 +73,6 @@
         }),
         document.getElementById("app")
       );
-      //
-      //
-      //
-      //
-      //
-      // var Component = React.createClass({
-      //   propTypes: {
-      //     firstName: React.PropTypes.string.isRequired,
-      //     middleName: React.PropTypes.string,
-      //     familyName: React.PropTypes.string.isRequired,
-      //     address: React.PropTypes.string,
-      //   },
-      //   getDefaultProps: function() {
-      //     return {
-      //       middleName: '',
-      //       address: 'なし',
-      //     };
-      //   },
-      //   render: function() {
-      //     return React.DOM.span(null, "私は" + this.props.firstName + this.props.familyName + "です。");
-      //   }
-      // });
-      // ReactDOM.render(
-      //   React.createElement(Component, {
-      //     firstName: "nm7",
-      //     familyName: "hisataka"
-      //   }),
-      //   document.getElementById("app")
-      // );
     </script>
   </body>
 </html>
