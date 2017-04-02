@@ -12,13 +12,26 @@
     <script src="./build/react-dom.js"></script>
     <script>
       var Component = React.createClass({
+        propTypes: {
+          firstName: React.PropTypes.string.isRequired,
+          middleName: React.PropTypes.string,
+          familyName: React.PropTypes.string.isRequired,
+          address: React.PropTypes.string,
+        },
+        getDefaultProps: function() {
+          return {
+            middleName: '',
+            address: 'なし',
+          };
+        },
         render: function() {
-          return React.DOM.span(null, "私は" + this.props.name + "です。");
+          return React.DOM.span(null, "私は" + this.props.firstName + this.props.familyName + "です。");
         }
       });
       ReactDOM.render(
         React.createElement(Component, {
-          name: "ボブ",
+          firstName: "nm7",
+          familyName: "hisataka"
         }),
         document.getElementById("app")
       );
